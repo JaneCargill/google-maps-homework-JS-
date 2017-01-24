@@ -23,14 +23,25 @@ var initialize = function() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      // var infoWindow = new google.maps.InfoWindow({
-        // position: pos,
-        // content: 'Location Found';
-      // });
+     
       mainMap.googleMap.setCenter(pos);
+
+    var infoWindow = new google.maps.InfoWindow({
+      map: mainMap.googleMap});
     
-    var currentLocationInfo = new MapWrapper (mapDiv, pos, 10);
-    currentLocationInfo.addMarker(pos, 'Location Found!');
+    var marker = new google.maps.Marker({
+      position: pos,
+      map: mainMap.googleMap,
+    });
+
+    infoWindow.setPosition(pos);
+    infoWindow.setContent('Location found')
+
+    // or using add marker method in mapwrapper as below - this only brings up 'location found' info window when the mark is clicked on.
+
+    // var currentLocationInfo = new MapWrapper (mapDiv, pos, 10);
+    // currentLocationInfo.addMarker(pos, 'Location Found!');
+
     })
   }
 
